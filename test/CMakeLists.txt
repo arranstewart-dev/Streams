@@ -27,20 +27,20 @@ add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
 # dependencies automatically when using CMake 2.8.11 or
 # later. Otherwise we have to add them here ourselves.
 if (CMAKE_VERSION VERSION_LESS 2.8.11)
-  include_directories("${gtest_SOURCE_DIR}/include")
+  include_directories(BEFORE SYSTEM
+    "${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
+else()
+  target_include_directories(gmock_main SYSTEM BEFORE INTERFACE
+    "${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
 endif()
 
-# Now simply link against gtest or gtest_main as needed. Eg
-# add_executable(example example.cpp)
-# target_link_libraries(example gtest_main)
-# add_test(NAME example_test COMMAND example)
 
 
 
 
 function(add_stream_test test_name)
     add_executable(${test_name} "${test_name}.cpp")
-		target_link_libraries(${test_name} gtest_main)
+		target_link_libraries(${test_name} gmock_main)
     add_test(${test_name} ${test_name})
 endfunction(add_stream_test)
 
