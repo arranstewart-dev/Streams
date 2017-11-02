@@ -6,9 +6,9 @@ using namespace testing;
 using namespace stream;
 using namespace stream::op;
 
-bool is_even(int x) {
+auto is_even = [](int x) -> bool {
     return x % 2 ==0;
-}
+};
 
 struct Number {
     Number(int v) : value(v) {}
