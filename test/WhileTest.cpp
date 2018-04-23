@@ -27,14 +27,14 @@ struct Number {
 };
 
 TEST(TakeWhileTest, Function) {
-    EXPECT_THAT(MakeStream::range(2, 8) | take_while(less_than_5_fn) | to_vector(),
+    EXPECT_THAT(MakeStream::range(2, 8) | take_while(&less_than_5_fn) | to_vector(),
                 ElementsAre(2, 3, 4));
     EXPECT_THAT(MakeStream::range(2, 8)  | take_while(less_than_5_lambda) | to_vector(),
                 ElementsAre(2, 3, 4));
 }
 
 TEST(DropWhileTest, Function) {
-    EXPECT_THAT(MakeStream::range(2, 8) | drop_while(less_than_5_fn) | to_vector(),
+    EXPECT_THAT(MakeStream::range(2, 8) | drop_while(&less_than_5_fn) | to_vector(),
                 ElementsAre(5, 6, 7));
     EXPECT_THAT(MakeStream::range(2, 8)  | drop_while(less_than_5_lambda) | to_vector(),
                 ElementsAre(5, 6, 7));
