@@ -12,7 +12,7 @@ class AdjacentDistinct : public StreamProvider<T> {
 
 public:
     AdjacentDistinct(StreamProviderPtr<T> source, Equal&& equal)
-        : source_(std::move(source)), equal_(std::forward<Equal>(equal_)) {}
+        : source_(std::move(source)), equal_(std::forward<Equal>(equal)) {}
 
     std::shared_ptr<T> get() override {
         return current_;
