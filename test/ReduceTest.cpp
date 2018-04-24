@@ -33,8 +33,8 @@ TEST(Reduce, NoIdentity) {
 }
 
 TEST(Reduce, IdentityFunction) {
-    EXPECT_THAT(MakeStream::range(1, 6) | reduce(to_string, int_concat), Eq("12345"s));
-    EXPECT_EXCEPTION(MakeStream::empty<int>() | reduce(to_string, int_concat),
+    EXPECT_THAT(MakeStream::range(1, 6) | reduce(&to_string, &int_concat), Eq("12345"s));
+    EXPECT_EXCEPTION(MakeStream::empty<int>() | reduce(&to_string, &int_concat),
                      EmptyStreamException);
 }
 
@@ -46,8 +46,8 @@ TEST(Reduce, SameTypeIdentity) {
 }
 
 TEST(Reduce, DiffTypeIdentity) {
-    EXPECT_THAT(MakeStream::range(1, 6) | identity_reduce(""s, int_concat),
+    EXPECT_THAT(MakeStream::range(1, 6) | identity_reduce(""s, &int_concat),
                 Eq("12345"s));
-    EXPECT_THAT(MakeStream::empty<int>() | identity_reduce("BLAH"s, int_concat),
+    EXPECT_THAT(MakeStream::empty<int>() | identity_reduce("BLAH"s, &int_concat),
                 Eq("BLAH"s));
 }

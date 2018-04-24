@@ -150,3 +150,14 @@ auto every_nth = [](int n) {
 
 MakeStream::from({1, 3, 8, 4, 7}) | every_nth(2) | print_to(std::cout); // 1 8 7
 ```
+
+## Testing
+Confirmed with `gcc-6.3` and `clang`.
+
+```
+cd /path/to/Streams
+mkdir build
+cd build
+cmake ..
+ctest
+```

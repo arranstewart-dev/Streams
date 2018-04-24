@@ -140,8 +140,8 @@ template<typename T, typename U>
 Stream<RemoveRef<T>> MakeStream::counter(T&& start, const U& increment) {
     using R = RemoveRef<T>;
     return MakeStream::iterate(std::forward<T>(start),
-        [&inc = increment](const R& value) {
-            return value + inc;
+        [increment](const R& value) {
+            return value + increment;
         });
 }
 

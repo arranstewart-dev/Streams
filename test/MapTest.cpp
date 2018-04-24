@@ -24,7 +24,7 @@ struct Number {
 };
 
 TEST(MapTest, Function) {
-    EXPECT_THAT(MakeStream::range(0, 5) | map_(square) | to_vector(),
+    EXPECT_THAT(MakeStream::range(0, 5) | map_(&square) | to_vector(),
                 ElementsAre(0, 1, 4, 9, 16));
 }
 

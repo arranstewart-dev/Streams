@@ -31,7 +31,7 @@ TEST(AdjacentDistinctTest, WithEqualsUsingStaticFunction) {
     };
 
     EXPECT_THAT(MakeStream::from({1, 2, 5, 10, 0, 8, 12, -1, 3, 5})
-                    | adjacent_distinct(Dummy::compare)
+                    | adjacent_distinct(&Dummy::compare)
                     | to_vector(),
                 ElementsAre(1, 0, -1));
 }

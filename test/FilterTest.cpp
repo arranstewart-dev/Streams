@@ -27,7 +27,7 @@ struct Number {
 };
 
 TEST(FilterTest, Function) {
-    EXPECT_THAT(MakeStream::range(1, 5) | filter(is_even_fn) | to_vector(),
+    EXPECT_THAT(MakeStream::range(1, 5) | filter(&is_even_fn) | to_vector(),
                 ElementsAre(2, 4));
     EXPECT_THAT(MakeStream::range(1, 5)  | filter(is_even_lambda) | to_vector(),
                 ElementsAre(2, 4));
